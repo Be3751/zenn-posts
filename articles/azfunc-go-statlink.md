@@ -2,8 +2,8 @@
 title: "静的リンクでビルド - Azure Functions に Go アプリケーションをデプロイする際の注意点"
 emoji: "🔄️"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["azure", "functions", "go"]
-published: false
+topics: ["azure", "functions", "go", "staticlink"]
+published: true
 ---
 
 # はじめに
