@@ -3,7 +3,7 @@ title: "Azure Container Apps で稼働するアプリケーションへ OpenTele
 emoji: "🔭"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["azure", "container", "tracing", "opentelemetry"]
-published: true
+published: false
 ---
 
 ![alt text](/images/aca_otel_tracing_demo.png)
@@ -29,6 +29,26 @@ OpenTelemetry のライブラリやエージェントをアプリケーション
 ここで重要な点としては、 OpenTelemetry はテレメトリーデータの収集と送信を責務とする設計思想を持っており、可視化や保存、分析は責務の対象外となっていることです。[^1]
 そのため、 OpenTelemetry を使用して収集したテレメトリーデータは、他のツール（ Azure では、 Application Insights や Azure Monitor ）と連携して可視化や分析を行うこととなります。
 :::
+
+## OpenTelemetry の技術的な優位性
+
+OpenTelemetry は、分散トレーシングや可観測性の分野で以下のような技術的な優位性を持っています。
+
+**1. ベンダーニュートラルな設計**
+
+OpenTelemetryは特定の監視・APMベンダーに依存せず、標準化されたインターフェースとエクスポーター設計により、Datadog、New Relic、Azure Monitor、Jaegerなど様々なバックエンドと簡単に連携できます。これにより、ベンダーロックインを回避し、柔軟な運用が可能です。
+
+**2. トレース／メトリクス／ログの統合仕様**
+
+OTelはトレース・メトリクス・ログの3種類のテレメトリーデータを1つの仕様とSDKで扱えるため、従来のように複数のツールを組み合わせる必要がなく、一貫した方法でデータ収集・処理ができます。
+
+**3. 多言語対応と豊富な自動計装**
+
+主要な言語（Python, Java, Go, .NET, Node.js など）に対応し、requestsやFlaskなどのライブラリに対する自動計装も提供されています。これにより、既存アプリへの導入が容易で、最小限のコード変更で可観測性を追加できます。
+
+**4. コンテキスト伝播の標準化（W3C Trace Context）**
+
+OpenTelemetryはW3C Trace Contextというグローバル標準に基づくコンテキスト伝播仕様を採用しており、サービス間で一貫したトレースの引き継ぎが可能です。これにより、複雑なマイクロサービスアーキテクチャでもエンドツーエンドの可観測性が実現できます。
 
 ## 分散トレーシングの考え方
 ここからは、 OpenTelemetry で分散トレーシングを実現する方法を知る前に、分散トレーシングの基本的な考え方について説明します。
